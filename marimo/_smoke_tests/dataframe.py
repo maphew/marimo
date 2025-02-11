@@ -1,31 +1,32 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#     "dask",
-#     "vega-datasets",
-#     "polars",
-#     "altair",
-#     "pyarrow",
+#     "dask==2025.1.0",
+#     "vega-datasets==0.9.0",
+#     "polars==1.22.0",
+#     "altair==5.5.0",
+#     "pyarrow==19.0.0",
 #     "marimo",
-#     "pandas",
-#     "ibis",
+#     "pandas==2.2.3",
+#     "ibis-framework[duckdb]",
+#     "duckdb==1.2.0",
 # ]
 # ///
 
 import marimo
 
-__generated_with = "0.9.10"
+__generated_with = "0.11.0"
 app = marimo.App(width="full")
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""# 🤖 Lists/Dicts""")
     return
 
 
 @app.cell
-def __(mo):
+def _(mo):
     _data = [
         {"Name": "John", "Age": 30, "City": "New York"},
         {"Name": "Alice", "Age": 24, "City": "San Francisco"},
@@ -36,13 +37,13 @@ def __(mo):
 
 
 @app.cell
-def __(as_list):
+def _(as_list):
     as_list.value
     return
 
 
 @app.cell
-def __(mo):
+def _(mo):
     _data = {
         "Name": ["John", "Alice"],
         "Age": [30, 24],
@@ -54,13 +55,13 @@ def __(mo):
 
 
 @app.cell
-def __(as_dict):
+def _(as_dict):
     as_dict.value
     return
 
 
 @app.cell
-def __(mo):
+def _(mo):
     _data = [1, 2, "hello", False]
     as_primitives = mo.ui.table(_data)
     as_primitives
@@ -68,168 +69,168 @@ def __(mo):
 
 
 @app.cell
-def __(as_primitives):
+def _(as_primitives):
     as_primitives.value
     return
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""# 🐼 Pandas""")
     return
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""## mo.ui.dataframe""")
     return
 
 
 @app.cell
-def __(cars, mo):
+def _(cars, mo):
     dataframe = mo.ui.dataframe(cars)
     dataframe
     return (dataframe,)
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""## mo.ui.table""")
     return
 
 
 @app.cell
-def __(dataframe, mo):
+def _(dataframe, mo):
     mo.ui.table(dataframe.value, selection=None)
     return
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""## .value""")
     return
 
 
 @app.cell
-def __(dataframe):
+def _(dataframe):
     dataframe.value
     return
 
 
 @app.cell
-def __(dataframe):
+def _(dataframe):
     dataframe.value["Cylinders"]
     return
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""## mo.ui.data_explorer""")
     return
 
 
 @app.cell
-def __(mo, pl_dataframe):
+def _(mo, pl_dataframe):
     mo.ui.data_explorer(pl_dataframe)
     return
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""# 🐻‍❄️ Polars""")
     return
 
 
 @app.cell
-def __(mo):
+def _(mo):
     mo.md("""## mo.ui.dataframe""")
     return
 
 
 @app.cell
-def __(mo, pl_dataframe):
+def _(mo, pl_dataframe):
     pl_dataframe_prime = mo.ui.dataframe(pl_dataframe)
     pl_dataframe_prime
     return (pl_dataframe_prime,)
 
 
 @app.cell
-def __(pl_dataframe_prime):
+def _(pl_dataframe_prime):
     pl_dataframe_prime.value
     return
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""## mo.ui.table""")
     return
 
 
 @app.cell
-def __(cars, mo, pl):
+def _(cars, mo, pl):
     pl_dataframe = pl.DataFrame(cars)
     mo.ui.table(pl_dataframe, selection=None)
     return (pl_dataframe,)
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""## mo.ui.data_explorer""")
     return
 
 
 @app.cell
-def __(mo, pl_dataframe):
+def _(mo, pl_dataframe):
     mo.ui.data_explorer(pl_dataframe)
     return
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""# 🏹 Arrow""")
     return
 
 
 @app.cell
-def __(cars, mo, pa):
+def _(cars, mo, pa):
     arrow_table = pa.Table.from_pandas(cars)
     mo.accordion({"Details": mo.plain_text(arrow_table)})
     return (arrow_table,)
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""## mo.ui.table""")
     return
 
 
 @app.cell
-def __(arrow_table, mo):
+def _(arrow_table, mo):
     arrow_table_el = mo.ui.table(arrow_table)
     arrow_table_el
     return (arrow_table_el,)
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md("""## .value""")
     return
 
 
 @app.cell
-def __(arrow_table_el):
+def _(arrow_table_el):
     arrow_table_el.value
     return
 
 
 @app.cell
-def __(arrow_table, mo):
+def _(arrow_table, mo):
     mo.ui.data_explorer(arrow_table)
     return
 
 
 @app.cell
-def __(mo):
+def _(mo):
     mo.md(
         rf"""
         # 💽 Dataframe protocol
@@ -240,7 +241,7 @@ def __(mo):
 
 
 @app.cell
-def __():
+def _():
     import dask.dataframe as dd
     import requests
 
@@ -252,7 +253,7 @@ def __():
 
 
 @app.cell
-def __():
+def _():
     import ibis
 
     ibis.options.interactive = True
@@ -266,38 +267,38 @@ def __():
 
 
 @app.cell
-def __(mo):
+def _(mo):
     mo.md(rf"## mo.ui.table")
     return
 
 
 @app.cell
-def __(ibis_data, mo):
+def _(ibis_data, mo):
     ibis_penguins = mo.ui.table(ibis_data)
     ibis_penguins
     return (ibis_penguins,)
 
 
 @app.cell
-def __(ibis_penguins):
+def _(ibis_penguins):
     ibis_penguins.value
     return
 
 
 @app.cell(hide_code=True)
-def __(mo):
+def _(mo):
     mo.md(rf"## mo.ui.data_explorer")
     return
 
 
 @app.cell
-def __(ibis_data, mo):
+def _(ibis_data, mo):
     mo.ui.data_explorer(ibis_data)
     return
 
 
 @app.cell
-def __():
+def _():
     import marimo as mo
     import pandas as pd
     import polars as pl
@@ -310,7 +311,7 @@ def __():
 
 
 @app.cell
-def __(cars, mo):
+def _(cars, mo):
     _df = mo.sql(
         f"""
         SELECT * FROM cars WHERE Cylinders > 6;
